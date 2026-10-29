@@ -3,390 +3,43 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>איך אני קולט את העולם — שאלון סהר</title>
+<title>שאלוני סהר</title>
+<link rel="icon" href="logo.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&family=Assistant:wght@400;500;600;700&family=David+Libre:wght@400;500&display=swap">
-<style>
-  :root{
-    --bg:#F5EDE0; --surface:#FBF6EE; --surface-2:#E8D5BC; --fg:#2F2B26;
-    --muted:#6E5A40; --taupe:#8A8178; --line:#E3D6C2;
-    --accent:#D4622E; --accent-strong:#B5532A; --chip:#FBF6EE; --err:#9a3b1f;
-    --radius:16px; --maxw:46rem;
-    --head:"Rubik",system-ui,-apple-system,"Segoe UI",sans-serif;
-    --body:"Assistant",system-ui,-apple-system,"Segoe UI",sans-serif;
-    --quote:"David Libre","Frank Ruhl Libre",Georgia,serif;
-  }
-  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-    --bg:#241F1A; --surface:#2E2823; --surface-2:#39312A; --fg:#EDE4D6;
-    --muted:#C2AE92; --taupe:#9E9488; --line:#413830;
-    --accent:#E07B45; --accent-strong:#C9632F; --chip:#39312A; --err:#f0a07a; color-scheme:dark;
-  }}
-  :root[data-theme="dark"]{
-    --bg:#241F1A; --surface:#2E2823; --surface-2:#39312A; --fg:#EDE4D6;
-    --muted:#C2AE92; --taupe:#9E9488; --line:#413830;
-    --accent:#E07B45; --accent-strong:#C9632F; --chip:#39312A; --err:#f0a07a; color-scheme:dark;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0}
-  body{background:var(--bg);color:var(--fg);font-family:var(--body);line-height:1.6;font-size:16px}
-  img{max-width:100%}
-  [hidden]{display:none!important}
-  .wrap{max-width:var(--maxw);margin-inline:auto;
-    padding-left:max(16px,env(safe-area-inset-left,0px));
-    padding-right:max(16px,env(safe-area-inset-right,0px));
-    padding-block:0 4rem}
-  h1,h2,h3{font-family:var(--head);font-weight:700;text-wrap:balance;line-height:1.25;margin:0}
-  p{margin:0}
-
-  header.bar{position:sticky;top:0;z-index:11;background:var(--surface-2);border-bottom:1px solid var(--line)}
-  .bar-inner{max-width:var(--maxw);margin-inline:auto;display:flex;align-items:center;gap:.75rem;
-    padding-left:max(16px,env(safe-area-inset-left,0px));
-    padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:.6rem}
-  .brand{display:flex;align-items:center;gap:.45rem;flex:none}
-  .brand img{height:1.75rem;width:auto;display:block}
-  .brandmark{font-family:var(--head);font-weight:700;font-size:1.15rem;color:var(--accent-strong);letter-spacing:.02em}
-  .bar-inner h1{font-size:.98rem;font-weight:600;flex:1;min-width:0;color:var(--fg)}
-  .bar-btn{font-family:var(--body);font-size:.85rem;font-weight:600;cursor:pointer;
-    background:var(--surface);color:var(--fg);border:1px solid var(--line);
-    border-radius:999px;padding:.4rem .85rem;white-space:nowrap}
-  .bar-btn.primary{background:var(--accent-strong);color:#fff;border-color:transparent}
-  .icon-btn{background:var(--surface);border:1px solid var(--line);border-radius:999px;width:2.1rem;height:2.1rem;
-    cursor:pointer;color:var(--fg);font-size:1rem;display:grid;place-items:center;flex:none}
-
-  .intro{margin-top:1.9rem}
-  .intro h2{font-size:1.85rem;margin-bottom:.4rem}
-  .arc{display:block;width:4.5rem;height:.9rem;margin-bottom:1rem}
-  .lead{color:var(--fg);font-family:var(--quote);font-size:1.12rem;line-height:1.7}
-  .lead em{font-style:italic}
-  .note-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-    border-top-right-radius:2.2rem;padding:1.05rem 1.15rem;margin-top:1.25rem}
-  .note-box strong{color:var(--fg);font-weight:700}
-  .scale-legend{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem;font-size:.82rem;color:var(--muted)}
-  .scale-legend span{background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:.15rem .6rem;color:var(--fg)}
-
-  .name-box{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
-    border-top-right-radius:2.2rem;padding:1.05rem 1.15rem;margin-top:1rem;display:grid;gap:.7rem}
-  .name-box .fld{display:flex;flex-direction:column;gap:.3rem}
-  .name-box label{font-size:.92rem;font-weight:600;color:var(--fg)}
-  .name-box input{background:var(--surface);border:1px solid var(--line);border-radius:10px;
-    padding:.55rem .7rem;font-family:var(--body);font-size:1rem;color:var(--fg)}
-  .name-box .hint{font-size:.82rem;color:var(--muted);font-weight:400}
-
-  .domain{margin-top:2.4rem}
-  .domain-head{display:flex;align-items:center;gap:.65rem;margin-bottom:.15rem}
-  .domain-num{font-family:var(--head);font-weight:700;color:#fff;background:var(--accent-strong);
-    width:1.9rem;height:1.9rem;border-radius:999px 999px 999px .35rem;display:grid;place-items:center;font-size:1rem;flex:none}
-  .domain h3{font-size:1.42rem}
-  .domain-sub{color:var(--muted);font-size:.96rem;margin:.1rem 0 1rem}
-  .item-group{font-family:var(--head);font-weight:600;font-size:.98rem;color:var(--accent-strong);margin:1.1rem .2rem .4rem}
-
-  .item{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-    border-top-right-radius:1.8rem;padding:1.05rem 1.15rem;margin-bottom:.85rem}
-  .item fieldset{border:0;margin:0;padding:0}
-  .item legend{font-size:1.04rem;padding:0;margin-bottom:.75rem;display:block;color:var(--fg)}
-  .scale{display:flex;flex-wrap:wrap;gap:.45rem}
-  .scale input{position:absolute;opacity:0;width:1px;height:1px}
-  .scale label{cursor:pointer;border:1px solid var(--line);background:var(--chip);color:var(--fg);
-    border-radius:999px;padding:.42rem .85rem;font-size:.9rem;font-weight:500;user-select:none;
-    transition:background .12s,border-color .12s}
-  .scale input:checked+label{background:var(--accent);color:#fff;border-color:transparent;font-weight:600}
-  .scale input:focus-visible+label{outline:2px solid var(--accent-strong);outline-offset:2px}
-  .item-extra{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem;margin-top:.85rem}
-  .chk{display:inline-flex;align-items:center;gap:.45rem;font-size:.9rem;color:var(--muted);cursor:pointer}
-  .chk input{width:1.05rem;height:1.05rem;accent-color:var(--accent);cursor:pointer}
-  .note-field{flex:1;min-width:11rem}
-  .note-field input{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;
-    padding:.45rem .65rem;font-family:var(--body);font-size:.9rem;color:var(--fg)}
-  .note-field input::placeholder{color:var(--taupe)}
-
-  .reflect{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
-    border-top-right-radius:2.4rem;padding:1.15rem 1.2rem;margin-top:1.15rem}
-  .reflect h4{font-family:var(--quote);font-size:1.25rem;margin:0 0 .15rem;font-weight:500;color:var(--fg)}
-  .reflect .r-sub{color:var(--muted);font-size:.86rem;margin-bottom:.9rem}
-  .reflect label.q{display:block;font-family:var(--quote);font-size:1.05rem;margin:.95rem 0 .4rem;color:var(--fg)}
-  .reflect textarea{width:100%;min-height:3.2rem;resize:vertical;background:var(--surface);
-    border:1px solid var(--line);border-radius:10px;padding:.55rem .7rem;font-family:var(--body);
-    font-size:.95rem;color:var(--fg);line-height:1.5}
-
-  .summary{margin-top:2.6rem;background:var(--surface);border:1px solid var(--line);
-    border-radius:var(--radius);border-top-right-radius:2.4rem;padding:1.25rem 1.25rem 1.5rem}
-  .summary h2{font-size:1.5rem;margin-bottom:.3rem}
-  .summary .actions{display:flex;flex-wrap:wrap;gap:.6rem;margin:.95rem 0 1.1rem}
-  .sum-group{margin-top:1.4rem}
-  .sum-group h3{font-size:1.12rem;color:var(--fg);margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:2px solid var(--surface-2)}
-  .sum-group .none{color:var(--muted);font-size:.9rem}
-  .sum-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.4rem}
-  .sum-list li{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:.5rem 1.7rem .5rem .7rem;font-size:.92rem;position:relative}
-  .sum-list li::before{content:"";position:absolute;right:.65rem;top:.92rem;width:.55rem;height:.55rem;
-    border:2px solid var(--accent);border-top-color:transparent;border-left-color:transparent;border-radius:50%;transform:rotate(45deg)}
-  .sum-list .tag{display:inline-block;font-size:.76rem;color:var(--accent-strong);font-weight:700;margin-inline-start:.4rem}
-  .sum-list .mnote{display:block;color:var(--muted);font-size:.82rem;margin-top:.2rem}
-  .sum-r{margin:.5rem 0 0}
-  .sum-r dt{font-family:var(--quote);font-size:.98rem;margin-top:.65rem;color:var(--fg)}
-  .sum-r dd{margin:.15rem 0 0;color:var(--muted);font-size:.9rem;white-space:pre-wrap}
-
-  .submit-box{margin-top:2.6rem;background:var(--surface-2);border:1px solid var(--line);
-    border-radius:var(--radius);border-top-right-radius:2.4rem;padding:1.3rem 1.25rem}
-  .submit-box h2{font-size:1.4rem;margin-bottom:.3rem}
-  .submit-box p{color:var(--muted);font-size:.95rem}
-  .submit-box .actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
-  .submit-box .bar-btn{font-size:.95rem;padding:.55rem 1.1rem}
-  #sendStatus{margin-top:.9rem;font-weight:600;font-size:.95rem}
-  #sendStatus.ok{color:var(--accent-strong)}
-  #sendStatus.err{color:var(--err)}
-
-  .saved-hint{color:var(--muted);font-size:.8rem;margin-top:1.5rem;text-align:center}
-  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-  @media print{
-    header.bar,.intro,#app,.submit-box,.saved-hint,.summary .actions,.summary>.lead{display:none!important}
-    body{background:#fff;color:#000}
-    .summary{margin:0;border:0;background:#fff;padding:0}
-    .sum-list li{background:#fff;border:1px solid #ccc}
-    .sum-list li::before{border-color:#000}
-  }
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
 <header class="bar">
   <div class="bar-inner">
     <span class="brand"><img src="logo.png" alt="לוגו סהר"><span class="brandmark">סהר</span></span>
-    <h1>איך אני קולט/ת את העולם</h1>
-    <button class="bar-btn primary" id="btnSummary">הצג סיכום</button>
-    <button class="icon-btn" id="btnTheme" aria-label="מצב תצוגה בהיר/כהה">◐</button>
+    <h1>שאלוני היכרות עם עצמי</h1>
   </div>
 </header>
 
 <main class="wrap">
-  <section class="intro">
-    <h2>איך אני קולט/ת את העולם</h2>
+  <section class="landing-hero">
+    <h2>שאלוני היכרות עם עצמי</h2>
     <svg class="arc" viewBox="0 0 90 18" fill="none" aria-hidden="true"><path d="M3 15 C 25 3, 65 3, 87 15" stroke="#D4622E" stroke-width="5" stroke-linecap="round"/></svg>
-    <p class="lead">שאלון להיכרות עם עצמי — בנושא חושים, ויסות וקשב. אין כאן תשובות נכונות או שגויות. השאלון ממפה איך <em>אני</em> חווה את העולם, ואני מחליט/ה מה, אם בכלל, לסמן ולהביא לשיחה עם המטפל/ת.</p>
+    <p class="lead">שאלונים להתבוננות עצמית ולגיבוש כיווני עבודה, בגישה מאשרת. בוחרים שאלון, עונים בקצב שנוח, ובסוף אפשר לשמור את הסיכום ולהביא לשיחה עם המטפל/ת.</p>
 
-    <div class="name-box">
-      <div class="fld">
-        <label for="respName">השם שלי</label>
-        <input id="respName" type="text" autocomplete="name" placeholder="שם מלא">
+    <div class="cards">
+      <a class="qcard" href="sensory.html">
+        <h3>איך אני קולט/ת את העולם</h3>
+        <p>חושים, ויסות וקשב — איך הגירויים מהעולם ומהגוף מגיעים אליי.</p>
+        <span class="go">למילוי ←</span>
+      </a>
+      <a class="qcard" href="language.html">
+        <h3>השפה והתקשורת שלי</h3>
+        <p>רצון לתקשר, יוזמה והיענות, שפת גוף וטון, מילים וערוצי תקשורת.</p>
+        <span class="go">למילוי ←</span>
+      </a>
+      <div class="qcard soon">
+        <h3>היכרות עם עצמי</h3>
+        <p>חוזקות ושונות, ייצוג עצמי, והאבחנה — מתי, למי ואיך לספר.</p>
+        <span class="go">בקרוב</span>
       </div>
-      <div class="fld">
-        <label for="respDate">תאריך</label>
-        <input id="respDate" type="date">
-      </div>
-    </div>
-
-    <div class="note-box">
-      <p>לכל משפט מסמנים עד כמה הוא נכון לגביי. אפשר גם לסמן <strong>"אחרים מעירים לי על זה"</strong> ולהוסיף הערה — רק אם רוצים.</p>
-      <div class="scale-legend">
-        <span>כן, כל הזמן</span><span>מדי פעם</span><span>כמעט ולא</span><span>אף פעם לא</span>
-      </div>
-      <p style="margin-top:.9rem;font-size:.92rem;color:var(--muted)">הערה שמישהו העיר לי היא <strong>מידע</strong> על איך ההתנהגות נקראה אצלו — לא הוכחה שצריך לשנות. אם זה חוזר עם אנשים שונים <em>וגם</em> מפריע לי — אולי שווה לדבר על זה. אם זה חוזר אבל לא מפריע לי — אפשר פשוט להסביר לסביבה. זו בחירה שלי.</p>
     </div>
   </section>
-
-  <div id="app"></div>
-
-  <section class="summary" id="summary" hidden>
-    <h2>הסיכום שלי</h2>
-    <p class="lead" style="font-size:1rem">תמונת מצב רגעית, להבאה לשיחה עם המטפל/ת.</p>
-    <div class="actions">
-      <button class="bar-btn primary" id="btnDownload">שמירה כקובץ</button>
-      <button class="bar-btn" id="btnPrint">הדפסה / PDF</button>
-      <button class="bar-btn" id="btnCopy">העתקת הסיכום</button>
-      <button class="bar-btn" id="btnCloseSum">סגירה</button>
-    </div>
-    <div id="summaryBody"></div>
-  </section>
-
-  <section class="submit-box">
-    <h2>סיום</h2>
-    <p>כשמסיימים, מציגים את הסיכום — ומשם אפשר לשמור אותו כקובץ למחשב, להדפיס או לשמור כ-PDF, או להעתיק. את הקובץ אפשר להביא או לשלוח למטפל/ת.</p>
-    <div class="actions">
-      <button class="bar-btn primary" id="btnSummary2">הצג סיכום ושמירה</button>
-    </div>
-  </section>
-
-  <p class="saved-hint">התשובות נשמרות זמנית בדפדפן הזה, עד שמוחקים אותן או שומרים כקובץ.</p>
 </main>
-
-<script>
-(function(){
-  var SCALE=[
-    {v:"always",t:"כן, כל הזמן"},
-    {v:"sometimes",t:"מדי פעם"},
-    {v:"rarely",t:"כמעט ולא"},
-    {v:"never",t:"אף פעם לא"}
-  ];
-  var REFLECT=[
-    {id:"r1",q:"מתוך הרשימה הזו — מה מרגיש לי חלק ממי שאני, משהו שאני מזהה בעצמי ולא רוצה לשנות?"},
-    {id:"r2",q:"האם יש כאן משהו שמפריע לי או מקשה עליי בחיי היומיום?"},
-    {id:"r3",q:"אם כן — מה מתוכם הייתי רוצה לשמוע איך אפשר לעבוד עליו, ובאיזה קצב / עם מי?"}
-  ];
-  var DOMAINS=[
-    {id:"d1",title:"חושים ותחושות הגוף",sub:"איך הגירויים מהעולם ומהגוף מגיעים אליי.",items:[
-      {id:"d1q1",t:"יש גירויים חושיים (רעש, אור, ריח, מרקם, מגע) שחזקים לי הרבה יותר מאשר לאנשים סביבי."},
-      {id:"d1q2",t:"יש גירויים חושיים שאני דווקא מחפש/ת ונהנה/ית מהם (לחץ, תנועה, צליל או מרקם מסוים)."},
-      {id:"d1q3",t:"אני מזהה מה הגוף שלי מרגיש (רעב, צמא, עייפות, כאב) רק כשזה כבר מתעצם."},
-      {id:"d1q4",t:"בסביבה עמוסת גירויים אני מתעייף/ת או מאבד/ת ריכוז מהר."},
-      {id:"d1q5",t:"יש מצבים שבהם מגע או קרבה פיזית לא נעימים לי, גם מאנשים שאני אוהב/ת."}
-    ]},
-    {id:"d2",title:"ויסות: רוגע, עומס ועוצמה",sub:"מה קורה כשמצטבר, ומה עוזר לי לחזור לעצמי.",items:[
-      {id:"d2q1",t:"כשמצטברים עליי עומס או גירויים, אני מגיע/ה למצב שקשה לי לתפקד בו (עומס יתר)."},
-      {id:"d2q2",t:"יש לי דרכים משלי להירגע ולווסת את עצמי (תנועה, מוזיקה, פעולה חוזרת, זמן לבד)."},
-      {id:"d2q3",t:"אני מזהה שאני מתקרב/ת לעומס רק כשהוא כבר כאן."},
-      {id:"d2q4",t:"כשאני בעומס, זה יוצא החוצה בהתנהגות (תנועה, קול, צורך לצאת מהמקום, שתיקה)."},
-      {id:"d2q5",t:"אחרי מצב חברתי או יום עמוס אני צריך/ה זמן התאוששות ממושך."}
-    ]},
-    {id:"d3",title:"קשב: מה תופס אותי ומה נשאר ברקע",sub:"לאן הקשב שלי הולך, ומתי קשה להזיז אותו.",items:[
-      {id:"d3q1",t:"אני שם/ה לב לפרטים קטנים שאחרים מפספסים."},
-      {id:"d3q2",t:"כשמשהו מעניין אותי, אני מתרכז/ת בו לעומק ולאורך זמן."},
-      {id:"d3q3",t:"כשאני עמוק/ה בתוך משהו, קשה לי להעביר את הקשב למשהו אחר כשמבקשים."},
-      {id:"d3q4",t:"בשיחה או בשיעור לא תמיד ברור לי מה הדבר העיקרי שאליו צריך לשים לב."},
-      {id:"d3q5",t:"גירויים ברקע (רעש, תנועה, התראות) מושכים לי את הקשב בקלות."}
-    ]}
-  ];
-
-  var STORE_KEY="sahar_q1_sensory_v1";
-  var state=load();
-
-  function load(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{}}catch(e){return {}}}
-  function save(){try{localStorage.setItem(STORE_KEY,JSON.stringify(state))}catch(e){}}
-
-  // theme
-  try{var th=localStorage.getItem("sahar_q1_theme");if(th)document.documentElement.setAttribute("data-theme",th);}catch(e){}
-  document.getElementById("btnTheme").addEventListener("click",function(){
-    var cur=document.documentElement.getAttribute("data-theme");
-    var isDark=cur?cur==="dark":matchMedia("(prefers-color-scheme:dark)").matches;
-    var next=isDark?"light":"dark";
-    document.documentElement.setAttribute("data-theme",next);
-    try{localStorage.setItem("sahar_q1_theme",next)}catch(e){}
-  });
-
-  // name + date
-  var nameInput=document.getElementById("respName");
-  var dateInput=document.getElementById("respDate");
-  nameInput.value=state._name||"";
-  if(state._date){dateInput.value=state._date;}
-  else{var t=new Date();dateInput.value=t.getFullYear()+"-"+String(t.getMonth()+1).padStart(2,"0")+"-"+String(t.getDate()).padStart(2,"0");state._date=dateInput.value;}
-  nameInput.addEventListener("input",function(){state._name=nameInput.value;save();});
-  dateInput.addEventListener("input",function(){state._date=dateInput.value;save();});
-
-  var app=document.getElementById("app");
-  DOMAINS.forEach(function(d,di){
-    var sec=document.createElement("section");sec.className="domain";
-    sec.innerHTML='<div class="domain-head"><span class="domain-num">'+(di+1)+'</span><h3>'+d.title+'</h3></div>'+
-             '<p class="domain-sub">'+d.sub+'</p>';
-    d.items.forEach(function(it){
-      if(it.head){var gh=document.createElement("div");gh.className="item-group";gh.textContent=it.head;sec.appendChild(gh);}
-      var cur=state[it.id]||{};
-      var box=document.createElement("div");box.className="item";
-      var fs=document.createElement("fieldset");
-      var lg=document.createElement("legend");lg.textContent=it.t;fs.appendChild(lg);
-      var scale=document.createElement("div");scale.className="scale";
-      SCALE.forEach(function(s){
-        var inid=it.id+"_"+s.v;
-        var inp=document.createElement("input");inp.type="radio";inp.name=it.id;inp.id=inid;inp.value=s.v;
-        if(cur.scale===s.v)inp.checked=true;
-        inp.addEventListener("change",function(){setField(it.id,"scale",s.v)});
-        var lab=document.createElement("label");lab.setAttribute("for",inid);lab.textContent=s.t;
-        scale.appendChild(inp);scale.appendChild(lab);
-      });
-      fs.appendChild(scale);
-      var extra=document.createElement("div");extra.className="item-extra";
-      var chkL=document.createElement("label");chkL.className="chk";
-      var chk=document.createElement("input");chk.type="checkbox";chk.id=it.id+"_rem";
-      if(cur.remark)chk.checked=true;
-      chk.addEventListener("change",function(){setField(it.id,"remark",chk.checked)});
-      chkL.appendChild(chk);chkL.appendChild(document.createTextNode("אחרים מעירים לי על זה"));
-      var nf=document.createElement("div");nf.className="note-field";
-      var ni=document.createElement("input");ni.type="text";ni.id=it.id+"_note";ni.placeholder="הערה (לא חובה)";
-      ni.value=cur.note||"";
-      ni.addEventListener("input",function(){setField(it.id,"note",ni.value)});
-      nf.appendChild(ni);
-      extra.appendChild(chkL);extra.appendChild(nf);
-      fs.appendChild(extra);
-      box.appendChild(fs);sec.appendChild(box);
-    });
-    var ref=document.createElement("div");ref.className="reflect";
-    ref.innerHTML='<h4>לעצור ולהתבונן</h4><p class="r-sub">מתוך התחום הזה — '+d.title+'</p>';
-    REFLECT.forEach(function(r){
-      var rid=d.id+"_"+r.id;
-      var lab=document.createElement("label");lab.className="q";lab.setAttribute("for",rid);lab.textContent=r.q;
-      var ta=document.createElement("textarea");ta.id=rid;ta.value=(state[rid]||"");
-      ta.addEventListener("input",function(){state[rid]=ta.value;save()});
-      ref.appendChild(lab);ref.appendChild(ta);
-    });
-    sec.appendChild(ref);
-    app.appendChild(sec);
-  });
-
-  function setField(itemId,key,val){if(!state[itemId])state[itemId]={};state[itemId][key]=val;save();}
-
-  function scaleLabel(v){for(var i=0;i<SCALE.length;i++)if(SCALE[i].v===v)return SCALE[i].t;return "";}
-  function buildSummary(){
-    var body=document.getElementById("summaryBody");body.innerHTML="";
-    DOMAINS.forEach(function(d){
-      var g=document.createElement("div");g.className="sum-group";
-      g.innerHTML='<h3>'+d.title+'</h3>';
-      var freq=d.items.filter(function(it){var c=state[it.id]||{};return c.scale==="always"||c.scale==="sometimes";});
-      if(freq.length){
-        var ul=document.createElement("ul");ul.className="sum-list";
-        freq.forEach(function(it){var c=state[it.id]||{};
-          var li=document.createElement("li");li.textContent=it.t;
-          var tag=document.createElement("span");tag.className="tag";tag.textContent="· "+scaleLabel(c.scale);li.appendChild(tag);
-          if(c.remark){var t2=document.createElement("span");t2.className="tag";t2.textContent="· מעירים לי";li.appendChild(t2);}
-          if(c.note&&c.note.trim()){var mn=document.createElement("span");mn.className="mnote";mn.textContent="הערה: "+c.note.trim();li.appendChild(mn);}
-          ul.appendChild(li);
-        });
-        g.appendChild(ul);
-      }else{var p=document.createElement("p");p.className="none";p.textContent="לא סומנו פריטים שקורים לי לעיתים קרובות בתחום הזה.";g.appendChild(p);}
-      var dl=document.createElement("dl");dl.className="sum-r";var any=false;
-      REFLECT.forEach(function(r){var val=(state[d.id+"_"+r.id]||"").trim();if(val){any=true;
-        var dt=document.createElement("dt");dt.textContent=r.q;var dd=document.createElement("dd");dd.textContent=val;dl.appendChild(dt);dl.appendChild(dd);}});
-      if(any)g.appendChild(dl);
-      body.appendChild(g);
-    });
-  }
-  function summaryText(){
-    var out=["הסיכום שלי — איך אני קולט/ת את העולם (חושים, ויסות, קשב)"];
-    out.push("שם: "+(state._name||"")+"   תאריך: "+(state._date||""));
-    out.push("");
-    DOMAINS.forEach(function(d){
-      out.push("■ "+d.title);
-      var freq=d.items.filter(function(it){var c=state[it.id]||{};return c.scale==="always"||c.scale==="sometimes";});
-      if(freq.length){
-        freq.forEach(function(it){var c=state[it.id]||{};
-          out.push("  • "+it.t+" ["+scaleLabel(c.scale)+(c.remark?" · מעירים לי":"")+"]");
-          if(c.note&&c.note.trim())out.push("      הערה: "+c.note.trim());
-        });
-      }else{out.push("  (לא סומנו פריטים שכיחים)");}
-      REFLECT.forEach(function(r){var val=(state[d.id+"_"+r.id]||"").trim();if(val){out.push("  ↳ "+r.q);out.push("     "+val);}});
-      out.push("");
-    });
-    return out.join("\n");
-  }
-
-  var summaryEl=document.getElementById("summary");
-  function showSummary(){buildSummary();summaryEl.hidden=false;summaryEl.scrollIntoView({behavior:"smooth",block:"start"});}
-  document.getElementById("btnSummary").addEventListener("click",showSummary);
-  document.getElementById("btnSummary2").addEventListener("click",showSummary);
-  document.getElementById("btnCloseSum").addEventListener("click",function(){summaryEl.hidden=true;});
-  document.getElementById("btnCopy").addEventListener("click",function(){
-    var txt=summaryText();var btn=this;
-    function ok(){btn.textContent="הועתק ✓";setTimeout(function(){btn.textContent="העתקת הסיכום"},1800);}
-    function fallback(){var ta=document.createElement("textarea");ta.value=txt;ta.style.position="fixed";ta.style.opacity="0";
-      document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand("copy");ok();}catch(e){btn.textContent="לא ניתן להעתיק";}document.body.removeChild(ta);}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok).catch(fallback);}else{fallback();}
-  });
-  document.getElementById("btnDownload").addEventListener("click",function(){
-    var txt=summaryText();
-    var nm=(state._name||"סיכום").trim().replace(/[\\\/:*?"<>|]/g,"-");
-    var fn="סיכום שאלון - "+nm+(state._date?(" - "+state._date):"")+".txt";
-    var blob=new Blob(["﻿"+txt],{type:"text/plain;charset=utf-8"});
-    var url=URL.createObjectURL(blob);
-    var a=document.createElement("a");a.href=url;a.download=fn;document.body.appendChild(a);a.click();
-    setTimeout(function(){URL.revokeObjectURL(url);a.remove();},0);
-  });
-  document.getElementById("btnPrint").addEventListener("click",function(){window.print();});
-})();
-</script>
 </body>
 </html>
