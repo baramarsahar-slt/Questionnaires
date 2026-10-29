@@ -136,6 +136,13 @@
 
   .saved-hint{color:var(--muted);font-size:.8rem;margin-top:1.5rem;text-align:center}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  @media print{
+    header.bar,.intro,#app,.submit-box,.saved-hint,.summary .actions,.summary>.lead{display:none!important}
+    body{background:#fff;color:#000}
+    .summary{margin:0;border:0;background:#fff;padding:0}
+    .sum-list li{background:#fff;border:1px solid #ccc}
+    .sum-list li::before{border-color:#000}
+  }
 </style>
 </head>
 <body>
@@ -157,7 +164,7 @@
 
     <div class="name-box">
       <div class="fld">
-        <label for="respName">השם שלי <span class="hint">(לפי זה תיווצר תיקייה אצל המטפל/ת)</span></label>
+        <label for="respName">השם שלי</label>
         <input id="respName" type="text" autocomplete="name" placeholder="שם מלא">
       </div>
       <div class="fld">
@@ -181,31 +188,27 @@
     <h2>הסיכום שלי</h2>
     <p class="lead" style="font-size:1rem">תמונת מצב רגעית, להבאה לשיחה עם המטפל/ת.</p>
     <div class="actions">
-      <button class="bar-btn primary" id="btnCopy">העתקת הסיכום</button>
+      <button class="bar-btn primary" id="btnDownload">שמירה כקובץ</button>
+      <button class="bar-btn" id="btnPrint">הדפסה / PDF</button>
+      <button class="bar-btn" id="btnCopy">העתקת הסיכום</button>
       <button class="bar-btn" id="btnCloseSum">סגירה</button>
     </div>
     <div id="summaryBody"></div>
   </section>
 
   <section class="submit-box">
-    <h2>סיום ושליחה</h2>
-    <p>כשמסיימים, אפשר לשלוח את התשובות למטפל/ת. אפשר גם להציג סיכום ולהעתיק אותו.</p>
+    <h2>סיום</h2>
+    <p>כשמסיימים, מציגים את הסיכום — ומשם אפשר לשמור אותו כקובץ למחשב, להדפיס או לשמור כ-PDF, או להעתיק. את הקובץ אפשר להביא או לשלוח למטפל/ת.</p>
     <div class="actions">
-      <button class="bar-btn primary" id="btnSend">שליחה למטפל/ת</button>
-      <button class="bar-btn" id="btnSummary2">הצג סיכום</button>
+      <button class="bar-btn primary" id="btnSummary2">הצג סיכום ושמירה</button>
     </div>
-    <p id="sendStatus" role="status" aria-live="polite"></p>
   </section>
 
-  <p class="saved-hint">התשובות נשמרות זמנית בדפדפן הזה עד לשליחה.</p>
+  <p class="saved-hint">התשובות נשמרות זמנית בדפדפן הזה, עד שמוחקים אותן או שומרים כקובץ.</p>
 </main>
 
 <script>
 (function(){
-  // ====== הגדרה: כתובת ה-Apps Script Web App של המטפלת ======
-  var GAS_URL = ""; // תוזרק לאחר פריסת הסקריפט
-  // ==========================================================
-
   var SCALE=[
     {v:"always",t:"כן, כל הזמן"},
     {v:"sometimes",t:"מדי פעם"},
@@ -373,23 +376,16 @@
       document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand("copy");ok();}catch(e){btn.textContent="לא ניתן להעתיק";}document.body.removeChild(ta);}
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok).catch(fallback);}else{fallback();}
   });
-
-  // ====== שליחה למטפלת ======
-  var sendStatus=document.getElementById("sendStatus");
-  function status(msg,isErr){sendStatus.textContent=msg;sendStatus.className=isErr?"err":"ok";}
-  document.getElementById("btnSend").addEventListener("click",function(){
-    var name=(state._name||"").trim();
-    if(!name){status("יש להזין שם בתחילת השאלון לפני השליחה.",true);nameInput.focus();nameInput.scrollIntoView({behavior:"smooth",block:"center"});return;}
-    if(!GAS_URL){status("הטופס עדיין לא מחובר לשמירה. אפשר להציג סיכום ולהעתיק אותו ידנית.",true);return;}
-    status("שולח/ת...",false);
-    var payload={questionnaire:"איך אני קולט את העולם",respondent:name,date:(state._date||""),submittedAt:new Date().toISOString(),summaryText:summaryText(),answers:state};
-    fetch(GAS_URL,{method:"POST",body:JSON.stringify(payload)})
-      .then(function(r){return r.text();})
-      .then(function(t){var ok=true;try{ok=JSON.parse(t).ok!==false;}catch(e){}
-        if(ok)status("✓ נשלח למטפל/ת. תודה!",false);
-        else status("הייתה בעיה בשמירה. אפשר להציג סיכום ולהעתיק אותו ידנית.",true);})
-      .catch(function(){status("לא הצלחנו לשלוח אוטומטית. אפשר להציג סיכום (למעלה) ולהעתיק אותו ידנית.",true);});
+  document.getElementById("btnDownload").addEventListener("click",function(){
+    var txt=summaryText();
+    var nm=(state._name||"סיכום").trim().replace(/[\\\/:*?"<>|]/g,"-");
+    var fn="סיכום שאלון - "+nm+(state._date?(" - "+state._date):"")+".txt";
+    var blob=new Blob(["﻿"+txt],{type:"text/plain;charset=utf-8"});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement("a");a.href=url;a.download=fn;document.body.appendChild(a);a.click();
+    setTimeout(function(){URL.revokeObjectURL(url);a.remove();},0);
   });
+  document.getElementById("btnPrint").addEventListener("click",function(){window.print();});
 })();
 </script>
 </body>
