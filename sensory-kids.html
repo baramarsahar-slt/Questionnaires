@@ -15,32 +15,36 @@ window.QUESTIONNAIRE = {
   storeKey: "sahar_k1_sensory_v1",
   variant: "accessible",
   scaleLabels: ["תמיד","הרבה פעמים","לפעמים","אף פעם"],
+  scaleLabels_en: ["Always","Often","Sometimes","Never"],
   title: "איך אני מרגיש את העולם",
+  title_en: "How I Feel the World",
   lead: "שאלון שעוזר לי להכיר את עצמי. אני מסמן/ת כמה כל משפט נכון בשבילי. אין תשובות נכונות או לא נכונות.",
-  help: "<p>בכל משפט מסמנים נקודה על הסקאלה — כמה זה נכון בשבילי: מ\"תמיד\" ועד \"אף פעם\".</p><p style='margin-top:.6rem;font-size:.95rem;color:var(--muted)'>אפשר גם לסמן \"אחרים אומרים לי על זה\". אפשר לעשות לאט, ואם משהו קשה — אפשר לבקש עזרה ממבוגר/ת.</p>",
+  lead_en: "A questionnaire that helps me get to know myself. I mark how true each sentence is for me. There are no right or wrong answers.",
+  help: "<p>בכל משפט מסמנים נקודה על הסקאלה — כמה זה נכון בשבילי: מ\"תמיד\" ועד \"אף פעם\".</p><p style='margin-top:.6rem;font-size:.95rem;color:var(--muted)'>אפשר גם לסמן \"אחרים מעירים לי על זה\". אפשר לעשות לאט, ואם משהו קשה — אפשר לבקש עזרה ממבוגר/ת.</p>",
+  help_en: "<p>For each sentence, mark a point on the scale — how true it is for me: from \"Always\" to \"Never\".</p><p style='margin-top:.6rem;font-size:.95rem;color:var(--muted)'>You can also check \"Others comment on this about me\". You can take your time, and if something is hard — you can ask an adult for help.</p>",
   reflect: [
-    {id:"r1",q:"מה כאן זה פשוט אני, ואני לא רוצה לשנות?"},
-    {id:"r2",q:"יש כאן משהו שמפריע לי או קשה לי?"},
-    {id:"r3",q:"על מה הייתי רוצה לדבר עם המטפל/ת שלי?"}
+    {id:"r1",q:"מה כאן זה פשוט אני, ואני לא רוצה לשנות?",q_en:"What here is simply me, and I don't want to change?"},
+    {id:"r2",q:"יש כאן משהו שמפריע לי או קשה לי?",q_en:"Is there anything here that bothers me or is hard for me?"},
+    {id:"r3",q:"על מה הייתי רוצה לדבר עם המטפל/ת שלי?",q_en:"What would I like to talk about with my therapist?"}
   ],
   domains: [
-    {id:"d1",title:"החושים שלי",sub:"איך אני מרגיש/ה רעש, אור, ריח ומגע.",items:[
-      {id:"d1q1",pole:"high",t:"יש רעשים (רעש חזק, הרבה אנשים מדברים ביחד) שמפריעים לי יותר מאשר לילדים אחרים."},
-      {id:"d1q2",pole:"high",t:"אור חזק, ריחות חזקים או בגד שמגרד מפריעים לי."},
-      {id:"d1q3",pole:"low",t:"יש דברים שכיף לי מאוד להרגיש — ללחוץ, להתנדנד, חפץ רך או מוזיקה."},
-      {id:"d1q4",pole:"high",t:"כשמישהו נוגע בי פתאום, בלי שידעתי, זה לא נעים לי."}
+    {id:"d1",title:"החושים שלי",title_en:"My Senses",sub:"איך אני מרגיש/ה רעש, אור, ריח ומגע.",sub_en:"How I feel sound, light, smell and touch.",items:[
+      {id:"d1q1",pole:"high",t:"יש רעשים (רעש חזק, הרבה אנשים מדברים ביחד) שמפריעים לי יותר מאשר לילדים אחרים.",t_en:"There are sounds (loud noise, many people talking at once) that bother me more than other kids."},
+      {id:"d1q2",pole:"high",t:"אור חזק, ריחות חזקים או בגד שמגרד מפריעים לי.",t_en:"Bright light, strong smells, or an itchy piece of clothing bother me."},
+      {id:"d1q3",pole:"low",t:"יש דברים שכיף לי מאוד להרגיש — ללחוץ, להתנדנד, חפץ רך או מוזיקה.",t_en:"There are things I really enjoy feeling — pressing, rocking, something soft, or music."},
+      {id:"d1q4",pole:"high",t:"כשמישהו נוגע בי פתאום, בלי שידעתי, זה לא נעים לי.",t_en:"When someone touches me suddenly, without me knowing, it doesn't feel good."}
     ]},
-    {id:"d2",title:"כשנהיה לי יותר מדי",sub:"מה קורה כשהכול מצטבר, ומה עוזר לי.",items:[
-      {id:"d2q1",pole:"high",t:"לפעמים נהיה לי יותר מדי (רעש, אנשים, הרבה דברים) ואני מרגיש/ה שאני רוצה לברוח או להתפוצץ."},
-      {id:"d2q2",pole:"low",t:"יש דברים שעוזרים לי להירגע (זמן לבד, תנועה, חפץ, מוזיקה)."},
-      {id:"d2q3",pole:"high",t:"אחרי יום עמוס בבית הספר אני עייף/ה מאוד וצריך/ה מנוחה."},
-      {id:"d2q4",pole:"high",t:"קשה לי לשים לב מראש שאני מתחיל/ה להתעצבן או להתעייף."}
+    {id:"d2",title:"כשנהיה לי יותר מדי",title_en:"When It Gets Too Much",sub:"מה קורה כשהכול מצטבר, ומה עוזר לי.",sub_en:"What happens when everything piles up, and what helps me.",items:[
+      {id:"d2q1",pole:"high",t:"לפעמים נהיה לי יותר מדי (רעש, אנשים, הרבה דברים) ואני מרגיש/ה שאני רוצה לברוח או להתפוצץ.",t_en:"Sometimes it becomes too much for me (noise, people, lots of things) and I feel like running away or exploding."},
+      {id:"d2q2",pole:"low",t:"יש דברים שעוזרים לי להירגע (זמן לבד, תנועה, חפץ, מוזיקה).",t_en:"There are things that help me calm down (time alone, movement, an object, music)."},
+      {id:"d2q3",pole:"high",t:"אחרי יום עמוס בבית הספר אני עייף/ה מאוד וצריך/ה מנוחה.",t_en:"After a busy day at school I'm very tired and need rest."},
+      {id:"d2q4",pole:"high",t:"קשה לי לשים לב מראש שאני מתחיל/ה להתעצבן או להתעייף.",t_en:"It's hard for me to notice in advance that I'm starting to get upset or tired."}
     ]},
-    {id:"d3",title:"הקשב שלי",sub:"לאן הקשב שלי הולך.",items:[
-      {id:"d3q1",pole:"low",t:"אני שם/ה לב לדברים קטנים שאחרים לא רואים."},
-      {id:"d3q2",pole:"low",t:"כשמשהו מעניין אותי, אני יכול/ה להתעסק בו הרבה זמן."},
-      {id:"d3q3",pole:"high",t:"קשה לי להפסיק משהו שאני באמצע, כשאומרים לי לעבור לדבר אחר."},
-      {id:"d3q4",pole:"high",t:"בכיתה קשה לי לדעת למה הכי חשוב לשים לב."}
+    {id:"d3",title:"הקשב שלי",title_en:"My Attention",sub:"לאן הקשב שלי הולך.",sub_en:"Where my attention goes.",items:[
+      {id:"d3q1",pole:"low",t:"אני שם/ה לב לדברים קטנים שאחרים לא רואים.",t_en:"I notice small things that others don't see."},
+      {id:"d3q2",pole:"low",t:"כשמשהו מעניין אותי, אני יכול/ה להתעסק בו הרבה זמן.",t_en:"When something interests me, I can stay with it for a long time."},
+      {id:"d3q3",pole:"high",t:"קשה לי להפסיק משהו שאני באמצע, כשאומרים לי לעבור לדבר אחר.",t_en:"It's hard for me to stop something I'm in the middle of when I'm told to switch to something else."},
+      {id:"d3q4",pole:"high",t:"בכיתה קשה לי לדעת למה הכי חשוב לשים לב.",t_en:"In class it's hard for me to know what's most important to pay attention to."}
     ]}
   ]
 };
