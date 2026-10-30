@@ -6,6 +6,8 @@
   var LANG_KEY="sahar_lang";
   var lang="he";
   try{var sl=localStorage.getItem(LANG_KEY);if(sl==="en"||sl==="he")lang=sl;}catch(e){}
+  var HAS_EN=!!Q.title_en;
+  if(lang==="en"&&!HAS_EN)lang="he"; // untranslated page stays fully Hebrew
 
   var STR={
     he:{
@@ -84,6 +86,7 @@
     +'  <button class="icon-btn" id="btnTheme" aria-label="'+S.themeAria+'">◐</button>'
     +'</div>';
   root.appendChild(header);
+  if(!HAS_EN){var _lb=document.getElementById("btnLang");if(_lb)_lb.hidden=true;}
 
   var main=document.createElement("main");main.className="wrap";root.appendChild(main);
 
