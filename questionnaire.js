@@ -6,6 +6,12 @@
   var LANG_KEY="sahar_lang";
   var lang="he";
   try{var sl=localStorage.getItem(LANG_KEY);if(sl==="en"||sl==="he")lang=sl;}catch(e){}
+  try{
+    var _qp=new URLSearchParams(location.search).get("lang");
+    var _hp=(location.hash||"").replace(/^#/,"");
+    var _ul=(_qp==="en"||_qp==="he")?_qp:((_hp==="en"||_hp==="he")?_hp:null);
+    if(_ul){lang=_ul;try{localStorage.setItem(LANG_KEY,lang);}catch(e){}}
+  }catch(e){}
   var HAS_EN=!!Q.title_en;
   if(lang==="en"&&!HAS_EN)lang="he"; // untranslated page stays fully Hebrew
 
