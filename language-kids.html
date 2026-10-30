@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>איך אני מדבר ומקשיב — שאלון סהר</title>
+<link rel="icon" href="logo.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&family=Assistant:wght@400;500;600;700&family=David+Libre:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="root"></div>
+<script>
+window.QUESTIONNAIRE = {
+  storeKey: "sahar_k2_language_v1",
+  variant: "accessible",
+  scaleLabels: ["תמיד","הרבה פעמים","לפעמים","אף פעם"],
+  scaleLabels_en: ["Always","Often","Sometimes","Never"],
+  title: "איך אני מדבר ומקשיב",
+  title_en: "How I Talk and Listen",
+  lead: "שאלון שעוזר לי להכיר איך אני מדבר/ת ומקשיב/ה. אני מסמן/ת כמה כל משפט נכון בשבילי. אין תשובות נכונות או לא נכונות.",
+  lead_en: "A questionnaire that helps me get to know how I talk and listen. I mark how true each sentence is for me. There are no right or wrong answers.",
+  help: "<p>בכל משפט מסמנים נקודה על הסקאלה — כמה זה נכון בשבילי: מ\"תמיד\" ועד \"אף פעם\".</p><p style='margin-top:.6rem;font-size:.95rem;color:var(--muted)'>אפשר גם לסמן \"אחרים מעירים לי על זה\". אפשר לעשות לאט, ואם משהו קשה — אפשר לבקש עזרה ממבוגר/ת.</p>",
+  help_en: "<p>For each sentence, mark a point on the scale — how true it is for me: from \"Always\" to \"Never\".</p><p style='margin-top:.6rem;font-size:.95rem;color:var(--muted)'>You can also check \"Others comment on this about me\". You can take your time, and if something is hard — you can ask an adult for help.</p>",
+  reflect: [
+    {id:"r1",q:"מה כאן זה פשוט אני, ואני לא רוצה לשנות?",q_en:"What here is simply me, and I don't want to change?"},
+    {id:"r2",q:"יש כאן משהו שמפריע לי או קשה לי?",q_en:"Is there anything here that bothers me or is hard for me?"},
+    {id:"r3",q:"על מה הייתי רוצה לדבר עם המטפל/ת שלי?",q_en:"What would I like to talk about with my therapist?"}
+  ],
+  domains: [
+    {id:"d1",title:"להתחיל ולדבר עם אחרים",title_en:"Starting and Talking with Others",sub:"איך אני נכנס/ת לשיחה.",sub_en:"How I get into a conversation.",items:[
+      {id:"d1q1",pole:"high",t:"קשה לי להתחיל לדבר עם מישהו ראשון.",t_en:"It's hard for me to be the first to start talking to someone."},
+      {id:"d1q2",pole:"low",t:"יש נושאים שאני מאוד אוהב/ת, ואני יכול/ה לדבר עליהם הרבה.",t_en:"There are topics I really love, and I can talk about them a lot."},
+      {id:"d1q3",pole:"high",t:"בשיחה קשה לי לדעת מתי תורי לדבר ומתי לתת לאחר לדבר.",t_en:"In a conversation it's hard for me to know when it's my turn to talk and when to let the other person talk."},
+      {id:"d1q4",pole:"high",t:"קשה לי להצטרף לקבוצת ילדים שכבר מדברים.",t_en:"It's hard for me to join a group of kids who are already talking."}
+    ]},
+    {id:"d2",title:"הגוף שלי כשאני מדבר/ת",title_en:"My Body When I Talk",sub:"מה הגוף והקול שלי עושים.",sub_en:"What my body and voice do.",items:[
+      {id:"d2q1",pole:"high",t:"קשה לי להסתכל בעיניים כשאני מדבר/ת, ולפעמים אני מסתכל/ת הצידה.",t_en:"It's hard for me to make eye contact when I talk, and sometimes I look to the side."},
+      {id:"d2q2",pole:"high",t:"קשה לי להבין מה אחרים מרגישים לפי הפנים או הקול שלהם.",t_en:"It's hard for me to tell how others feel from their face or their voice."},
+      {id:"d2q3",pole:"high",t:"לפעמים אומרים לי שאני מדבר/ת חזק מדי או חלש מדי.",t_en:"Sometimes people tell me I talk too loudly or too quietly."},
+      {id:"d2q4",pole:"high",t:"כשאני מספר/ת סיפור, לפעמים יש בו יותר מדי פרטים או מעט מדי.",t_en:"When I tell a story, sometimes it has too many details or too few."}
+    ]},
+    {id:"d3",title:"להבין ולהיות מובן/ת",title_en:"Understanding and Being Understood",sub:"איך אני מבין/ה אחרים ואיך מבינים אותי.",sub_en:"How I understand others and how they understand me.",items:[
+      {id:"d3q1",pole:"high",t:"קשה לי להבין בדיחות, \"חוכמות\" או דברים שלא אומרים בדיוק.",t_en:"It's hard for me to get jokes, sarcasm, or things people don't say directly."},
+      {id:"d3q2",pole:"high",t:"אני מעדיף/ה שיגידו לי דברים ברור ולא \"ברמז\".",t_en:"I prefer people to tell me things clearly, not through hints."},
+      {id:"d3q3",pole:"high",t:"קל לי יותר לכתוב (הודעה) מאשר לדבר.",t_en:"It's easier for me to write (a message) than to talk."},
+      {id:"d3q4",pole:"low",t:"כשלא הבנתי משהו, אני יכול/ה לבקש שיסבירו שוב.",t_en:"When I don't understand something, I can ask for it to be explained again."}
+    ]}
+  ]
+};
+</script>
+<script src="questionnaire.js"></script>
+</body>
+</html>

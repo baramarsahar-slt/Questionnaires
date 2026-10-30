@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>כללים לא כתובים — שאלון סהר</title>
+<link rel="icon" href="logo.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&family=Assistant:wght@400;500;600;700&family=David+Libre:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="root"></div>
+<script>
+window.QUESTIONNAIRE = {
+  storeKey: "sahar_k6_social_v1",
+  variant: "accessible",
+  scaleLabels: ["תמיד","הרבה פעמים","לפעמים","אף פעם"],
+  scaleLabels_en: ["Always","Often","Sometimes","Never"],
+  title: "כללים לא כתובים",
+  title_en: "Unwritten Rules",
+  lead: "שאלון שעוזר לי להכיר את הכללים החברתיים — הדברים שלא כתובים בשום מקום. אין תשובות נכונות או לא נכונות.",
+  lead_en: "A questionnaire that helps me get to know the social rules — the things that aren't written down anywhere. There are no right or wrong answers.",
+  help: "<p>בכל משפט מסמנים נקודה על הסקאלה — כמה זה נכון בשבילי: מ\"תמיד\" ועד \"אף פעם\".</p><p style='margin-top:.6rem;font-size:.95rem;color:var(--muted)'>אפשר גם לסמן \"אחרים מעירים לי על זה\". אפשר לעשות לאט, ואם משהו קשה — אפשר לבקש עזרה ממבוגר/ת.</p>",
+  help_en: "<p>For each sentence, mark a point on the scale — how true it is for me: from \"Always\" to \"Never\".</p><p style='margin-top:.6rem;font-size:.95rem;color:var(--muted)'>You can also check \"Others comment on this about me\". You can take your time, and if something is hard — you can ask an adult for help.</p>",
+  reflect: [
+    {id:"r1",q:"מה כאן זה פשוט אני, ואני לא רוצה לשנות?",q_en:"What here is simply me, and I don't want to change?"},
+    {id:"r2",q:"יש כאן משהו שמפריע לי או קשה לי?",q_en:"Is there anything here that bothers me or is hard for me?"},
+    {id:"r3",q:"על מה הייתי רוצה לדבר עם המטפל/ת שלי?",q_en:"What would I like to talk about with my therapist?"}
+  ],
+  domains: [
+    {id:"d1",title:"כללים לא כתובים",title_en:"Unwritten Rules",sub:"הדברים ש\"מקובל\" לעשות, שאף אחד לא כתב.",sub_en:"The things it's \"expected\" to do, that no one wrote down.",items:[
+      {id:"d1q1",pole:"high",t:"קשה לי לדעת מה \"מקובל\" לעשות או להגיד במצבים חברתיים.",t_en:"It's hard for me to know what's \"expected\" to do or say in social situations."},
+      {id:"d1q2",pole:"high",t:"לפעמים אני מופתע/ת לגלות שמשהו שאמרתי נשמע אחרת ממה שהתכוונתי.",t_en:"Sometimes I'm surprised to find that something I said came across differently than I meant."},
+      {id:"d1q3",pole:"high",t:"אני לומד/ת כללים חברתיים כשמסבירים לי אותם, ולא \"לבד\".",t_en:"I learn social rules when someone explains them to me, not \"on my own\"."},
+      {id:"d1q4",pole:"high",t:"אני משקיע/ה הרבה אנרגיה בניסיון להבין מצבים חברתיים.",t_en:"I put a lot of energy into trying to figure out social situations."}
+    ]},
+    {id:"d2",title:"מה מספרים ולמי",title_en:"What to Share and with Whom",sub:"מה מתאים להגיד, ולמי.",sub_en:"What's okay to say, and to whom.",items:[
+      {id:"d2q1",pole:"high",t:"קשה לי לדעת מה מתאים לספר לחבר קרוב ומה לא לכל אחד.",t_en:"It's hard for me to know what's okay to tell a close friend and what's not for everyone."},
+      {id:"d2q2",pole:"high",t:"לפעמים אני מספר/ת יותר מדי או פחות מדי.",t_en:"Sometimes I share too much or too little."},
+      {id:"d2q3",pole:"high",t:"קשה לי לדעת מתי מישהו חוצה לי גבול, או להגיד \"עד כאן\".",t_en:"It's hard for me to tell when someone crosses a line for me, or to say \"that's enough\"."}
+    ]},
+    {id:"d3",title:"ברשת ובהודעות",title_en:"Online and in Messages",sub:"איך אני מסתדר/ת בתקשורת כתובה.",sub_en:"How I manage in written communication.",items:[
+      {id:"d3q1",pole:"high",t:"בהודעות קשה לי להבין מה אנשים באמת מתכוונים (בלי לראות פנים או לשמוע קול).",t_en:"In messages it's hard for me to tell what people really mean (without seeing a face or hearing a voice)."},
+      {id:"d3q2",pole:"high",t:"אני משקיע/ה הרבה זמן בניסוח הודעה כדי שתישמע נכון.",t_en:"I spend a lot of time wording a message so it comes out right."},
+      {id:"d3q3",pole:"low",t:"ברשת (הודעות, משחקים) נוח לי יותר לדבר ולהתחבר.",t_en:"Online (messages, games) it's easier for me to talk and connect."}
+    ]}
+  ]
+};
+</script>
+<script src="questionnaire.js"></script>
+</body>
+</html>

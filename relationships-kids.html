@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>חברים ושייכות — שאלון סהר</title>
+<link rel="icon" href="logo.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&family=Assistant:wght@400;500;600;700&family=David+Libre:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="root"></div>
+<script>
+window.QUESTIONNAIRE = {
+  storeKey: "sahar_k5_friends_v1",
+  variant: "accessible",
+  scaleLabels: ["תמיד","הרבה פעמים","לפעמים","אף פעם"],
+  scaleLabels_en: ["Always","Often","Sometimes","Never"],
+  title: "חברים ושייכות",
+  title_en: "Friends and Belonging",
+  lead: "שאלון שעוזר לי להכיר איך אני מרגיש/ה עם חברים ובקבוצה. אין תשובות נכונות או לא נכונות.",
+  lead_en: "A questionnaire that helps me get to know how I feel with friends and in a group. There are no right or wrong answers.",
+  help: "<p>בכל משפט מסמנים נקודה על הסקאלה — כמה זה נכון בשבילי: מ\"תמיד\" ועד \"אף פעם\".</p><p style='margin-top:.6rem;font-size:.95rem;color:var(--muted)'>אפשר גם לסמן \"אחרים מעירים לי על זה\". אפשר לעשות לאט, ואם משהו קשה — אפשר לבקש עזרה ממבוגר/ת.</p>",
+  help_en: "<p>For each sentence, mark a point on the scale — how true it is for me: from \"Always\" to \"Never\".</p><p style='margin-top:.6rem;font-size:.95rem;color:var(--muted)'>You can also check \"Others comment on this about me\". You can take your time, and if something is hard — you can ask an adult for help.</p>",
+  reflect: [
+    {id:"r1",q:"מה כאן זה פשוט אני, ואני לא רוצה לשנות?",q_en:"What here is simply me, and I don't want to change?"},
+    {id:"r2",q:"יש כאן משהו שמפריע לי או קשה לי?",q_en:"Is there anything here that bothers me or is hard for me?"},
+    {id:"r3",q:"על מה הייתי רוצה לדבר עם המטפל/ת שלי?",q_en:"What would I like to talk about with my therapist?"}
+  ],
+  domains: [
+    {id:"d1",title:"להיות בקבוצה",title_en:"Being in a Group",sub:"איך אני מרגיש/ה בקבוצה.",sub_en:"How I feel in a group.",items:[
+      {id:"d1q1",pole:"high",t:"בקבוצה של ילדים אני לרוב מרגיש/ה \"בחוץ\" או שונה.",t_en:"In a group of kids I usually feel \"on the outside\" or different."},
+      {id:"d1q2",pole:"high",t:"להיכנס לקבוצה חדשה (כיתה, חוג) קשה לי.",t_en:"Joining a new group (a class, an activity) is hard for me."},
+      {id:"d1q3",pole:"high",t:"אני מעדיף/ה לשחק או לדבר עם ילד אחד או שניים, ולא בקבוצה גדולה.",t_en:"I prefer playing or talking with one or two kids, not in a big group."},
+      {id:"d1q4",pole:"low",t:"יש מקום או קבוצה שבהם אני מרגיש/ה שייך/ת ונוח/ה.",t_en:"There's a place or group where I feel I belong and feel comfortable."}
+    ]},
+    {id:"d2",title:"חברויות",title_en:"Friendships",sub:"איך אני יוצר/ת ושומר/ת על חברים.",sub_en:"How I make and keep friends.",items:[
+      {id:"d2q1",pole:"high",t:"קשה לי להציע למישהו לשחק או להיפגש.",t_en:"It's hard for me to ask someone to play or to meet up."},
+      {id:"d2q2",pole:"high",t:"קשה לי לשמור על חברים לאורך זמן.",t_en:"It's hard for me to keep friends over time."},
+      {id:"d2q3",pole:"high",t:"קשה לי לדעת אם ילד/ה רוצה להיות חבר/ה שלי.",t_en:"It's hard for me to tell if a kid wants to be my friend."},
+      {id:"d2q4",pole:"low",t:"יש לי חבר/ה (או כמה) שאני מרגיש/ה איתו/ה טוב ומובן/ת.",t_en:"I have a friend (or a few) I feel good and understood with."}
+    ]},
+    {id:"d3",title:"כשקשה עם חברים",title_en:"When It's Hard with Friends",sub:"מה קורה כשיש ריב או קושי.",sub_en:"What happens when there's a fight or a difficulty.",items:[
+      {id:"d3q1",pole:"high",t:"כשיש ריב קשה לי לדעת איך לתקן.",t_en:"When there's a fight, it's hard for me to know how to fix it."},
+      {id:"d3q2",pole:"high",t:"אני נוטה להתרחק כשמשהו מפריע לי, במקום להגיד.",t_en:"I tend to pull away when something bothers me, instead of saying it."},
+      {id:"d3q3",pole:"low",t:"יש מבוגר/ת שאני יכול/ה לדבר איתו/ה כשקשה לי עם חברים.",t_en:"There's a grown-up I can talk to when things are hard with friends."}
+    ]}
+  ]
+};
+</script>
+<script src="questionnaire.js"></script>
+</body>
+</html>

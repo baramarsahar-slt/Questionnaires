@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>לעשות דברים בעצמי — שאלון סהר</title>
+<link rel="icon" href="logo.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&family=Assistant:wght@400;500;600;700&family=David+Libre:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="root"></div>
+<script>
+window.QUESTIONNAIRE = {
+  storeKey: "sahar_k4_independence_v1",
+  variant: "accessible",
+  scaleLabels: ["תמיד","הרבה פעמים","לפעמים","אף פעם"],
+  scaleLabels_en: ["Always","Often","Sometimes","Never"],
+  title: "לעשות דברים בעצמי",
+  title_en: "Doing Things Myself",
+  lead: "שאלון שעוזר לי להכיר איך אני מסתדר/ת לבד ומתי אני צריך/ה עזרה. אין תשובות נכונות או לא נכונות.",
+  lead_en: "A questionnaire that helps me get to know how I manage on my own and when I need help. There are no right or wrong answers.",
+  help: "<p>בכל משפט מסמנים נקודה על הסקאלה — כמה זה נכון בשבילי: מ\"תמיד\" ועד \"אף פעם\".</p><p style='margin-top:.6rem;font-size:.95rem;color:var(--muted)'>אפשר גם לסמן \"אחרים מעירים לי על זה\". אפשר לעשות לאט, ואם משהו קשה — אפשר לבקש עזרה ממבוגר/ת.</p>",
+  help_en: "<p>For each sentence, mark a point on the scale — how true it is for me: from \"Always\" to \"Never\".</p><p style='margin-top:.6rem;font-size:.95rem;color:var(--muted)'>You can also check \"Others comment on this about me\". You can take your time, and if something is hard — you can ask an adult for help.</p>",
+  reflect: [
+    {id:"r1",q:"מה כאן זה פשוט אני, ואני לא רוצה לשנות?",q_en:"What here is simply me, and I don't want to change?"},
+    {id:"r2",q:"יש כאן משהו שמפריע לי או קשה לי?",q_en:"Is there anything here that bothers me or is hard for me?"},
+    {id:"r3",q:"על מה הייתי רוצה לדבר עם המטפל/ת שלי?",q_en:"What would I like to talk about with my therapist?"}
+  ],
+  domains: [
+    {id:"d1",title:"בבית הספר",title_en:"At School",sub:"איך אני מסתדר/ת בכיתה ובבית הספר.",sub_en:"How I manage in class and at school.",items:[
+      {id:"d1q1",pole:"high",t:"קשה לי לפנות למורה או לבקש משהו בכיתה.",t_en:"It's hard for me to approach the teacher or ask for something in class."},
+      {id:"d1q2",pole:"high",t:"כשמשהו משתנה פתאום (מורה אחר, שינוי בלוח הזמנים) זה קשה לי.",t_en:"When something changes suddenly (a different teacher, a schedule change) it's hard for me."},
+      {id:"d1q3",pole:"high",t:"אני מתכונן/ת מראש בראש למה להגיד לפני שאני פונה למישהו.",t_en:"I plan in my head in advance what to say before I approach someone."},
+      {id:"d1q4",pole:"low",t:"יש לי דרכים שעוזרות לי (רשימה, תזכורת, מישהו שמלווה).",t_en:"I have ways that help me (a list, a reminder, someone who comes along)."}
+    ]},
+    {id:"d2",title:"לעשות דברים לבד",title_en:"Doing Things on My Own",sub:"משימות יומיומיות מחוץ לבית הספר.",sub_en:"Everyday tasks outside of school.",items:[
+      {id:"d2q1",pole:"high",t:"לדבר בטלפון או להזמין משהו קשה לי.",t_en:"Talking on the phone or ordering something is hard for me."},
+      {id:"d2q2",pole:"high",t:"אני מעדיף/ה לעשות דברים בכתב (הודעה, אפליקציה) מאשר לדבר.",t_en:"I prefer to do things in writing (a message, an app) rather than talking."},
+      {id:"d2q3",pole:"high",t:"כשמשהו לא הולך כמו שחשבתי, קשה לי להחליט מה לעשות.",t_en:"When something doesn't go the way I expected, it's hard for me to decide what to do."}
+    ]},
+    {id:"d3",title:"מול מבוגרים",title_en:"With Grown-ups",sub:"איך אני מסתדר/ת מול מבוגרים ובעלי תפקיד.",sub_en:"How I manage with grown-ups and people in charge.",items:[
+      {id:"d3q1",pole:"high",t:"מול מבוגר/ת לא מוכר/ת (מורה חדש/ה, מוכר/ת בחנות) קשה לי לדעת איך להתנהג.",t_en:"With a grown-up I don't know (a new teacher, a shop clerk) it's hard for me to know how to act."},
+      {id:"d3q2",pole:"high",t:"אני חושש/ת שההתנהגות שלי תתפרש לא נכון.",t_en:"I worry that the way I act will be understood the wrong way."},
+      {id:"d3q3",pole:"low",t:"יש מבוגר/ת שאני יודע/ת לפנות אליו/ה כשצריך עזרה.",t_en:"There's a grown-up I know I can turn to when I need help."}
+    ]}
+  ]
+};
+</script>
+<script src="questionnaire.js"></script>
+</body>
+</html>

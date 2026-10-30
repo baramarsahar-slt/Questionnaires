@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>להכיר את עצמי — שאלון סהר</title>
+<link rel="icon" href="logo.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&family=Assistant:wght@400;500;600;700&family=David+Libre:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="root"></div>
+<script>
+window.QUESTIONNAIRE = {
+  storeKey: "sahar_k3_self_v1",
+  variant: "accessible",
+  scaleLabels: ["תמיד","הרבה פעמים","לפעמים","אף פעם"],
+  scaleLabels_en: ["Always","Often","Sometimes","Never"],
+  title: "להכיר את עצמי",
+  title_en: "Getting to Know Myself",
+  lead: "שאלון שעוזר לי להכיר את עצמי — מה אני טוב/ה בו, מה קשה לי, ומה אני צריך/ה. אין תשובות נכונות או לא נכונות.",
+  lead_en: "A questionnaire that helps me get to know myself — what I'm good at, what's hard for me, and what I need. There are no right or wrong answers.",
+  help: "<p>בכל משפט מסמנים נקודה על הסקאלה — כמה זה נכון בשבילי: מ\"תמיד\" ועד \"אף פעם\".</p><p style='margin-top:.6rem;font-size:.95rem;color:var(--muted)'>אפשר גם לסמן \"אחרים מעירים לי על זה\". אפשר לעשות לאט, ואם משהו קשה — אפשר לבקש עזרה ממבוגר/ת.</p>",
+  help_en: "<p>For each sentence, mark a point on the scale — how true it is for me: from \"Always\" to \"Never\".</p><p style='margin-top:.6rem;font-size:.95rem;color:var(--muted)'>You can also check \"Others comment on this about me\". You can take your time, and if something is hard — you can ask an adult for help.</p>",
+  reflect: [
+    {id:"r1",q:"מה כאן זה פשוט אני, ואני לא רוצה לשנות?",q_en:"What here is simply me, and I don't want to change?"},
+    {id:"r2",q:"יש כאן משהו שמפריע לי או קשה לי?",q_en:"Is there anything here that bothers me or is hard for me?"},
+    {id:"r3",q:"על מה הייתי רוצה לדבר עם המטפל/ת שלי?",q_en:"What would I like to talk about with my therapist?"}
+  ],
+  domains: [
+    {id:"d1",title:"החוזקות שלי",title_en:"My Strengths",sub:"מה אני טוב/ה בו ומה מיוחד בי.",sub_en:"What I'm good at and what's special about me.",items:[
+      {id:"d1q1",pole:"low",t:"אני יודע/ת לומר מה אני טוב/ה בו.",t_en:"I can say what I'm good at."},
+      {id:"d1q2",pole:"low",t:"יש דברים שאני ממש אוהב/ת ומבין/ה בהם הרבה.",t_en:"There are things I really love and know a lot about."},
+      {id:"d1q3",pole:"high",t:"לפעמים אני מרגיש/ה שאני שונה מילדים אחרים.",t_en:"Sometimes I feel that I'm different from other kids."},
+      {id:"d1q4",pole:"high",t:"קשה לי כשאני משווה את עצמי לאחרים.",t_en:"It's hard for me when I compare myself to others."}
+    ]},
+    {id:"d2",title:"מה אני צריך/ה",title_en:"What I Need",sub:"מה עוזר לי ואיך אני דואג/ת לעצמי.",sub_en:"What helps me and how I take care of myself.",items:[
+      {id:"d2q1",pole:"low",t:"אני יודע/ת מה עוזר לי להרגיש טוב (שקט, הפסקה, מקום משלי).",t_en:"I know what helps me feel good (quiet, a break, a space of my own)."},
+      {id:"d2q2",pole:"high",t:"קשה לי לבקש עזרה כשאני צריך/ה.",t_en:"It's hard for me to ask for help when I need it."},
+      {id:"d2q3",pole:"high",t:"קשה לי להגיד \"לא\" או לעצור משהו שלא נעים לי.",t_en:"It's hard for me to say \"no\" or to stop something that doesn't feel good."},
+      {id:"d2q4",pole:"low",t:"אני יכול/ה להסביר לאחרים איך הכי טוב לעזור לי.",t_en:"I can explain to others how best to help me."}
+    ]},
+    {id:"d3",title:"להיות אוטיסט/ית",title_en:"Being Autistic",sub:"מה זה אומר בשבילי, ומתי לספר.",sub_en:"What it means for me, and when to tell.",items:[
+      {id:"d3q1",pole:"low",t:"אני יודע/ת שאני אוטיסט/ית ומבין/ה מה זה אומר עליי.",t_en:"I know I'm autistic and I understand what that means about me."},
+      {id:"d3q2",pole:"high",t:"קשה לי לדעת למי ומתי לספר שאני אוטיסט/ית.",t_en:"It's hard for me to know who to tell and when that I'm autistic."},
+      {id:"d3q3",pole:"high",t:"לפעמים אני מנסה \"להתנהג כמו כולם\" כדי להשתלב, וזה מעייף.",t_en:"Sometimes I try to \"act like everyone else\" to fit in, and it's tiring."}
+    ]}
+  ]
+};
+</script>
+<script src="questionnaire.js"></script>
+</body>
+</html>
