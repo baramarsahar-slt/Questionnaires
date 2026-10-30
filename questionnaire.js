@@ -5,13 +5,11 @@
   document.documentElement.setAttribute("dir","rtl");
   document.documentElement.setAttribute("lang","he");
 
-  var SCALE=[
-    {v:"always",t:"כן, כל הזמן"},
-    {v:"sometimes",t:"מדי פעם"},
-    {v:"rarely",t:"כמעט ולא"},
-    {v:"never",t:"אף פעם לא"}
-  ];
-  var LOGO="data:image/png;base64,"; // not used; logo via <img src="logo.png">
+  var SCALE_V=["always","sometimes","rarely","never"];
+  var SCALE_T=Q.scaleLabels||["כן, כל הזמן","מדי פעם","כמעט ולא","אף פעם לא"];
+  var SCALE=SCALE_V.map(function(v,i){return {v:v,t:SCALE_T[i]};});
+  var ACCESSIBLE=(Q.variant==="accessible");
+  if(ACCESSIBLE)document.documentElement.classList.add("accessible");
 
   var STORE_KEY=Q.storeKey;
   var state=load();
@@ -34,6 +32,10 @@
   var main=document.createElement("main");main.className="wrap";root.appendChild(main);
 
   // ---- intro ----
+  var noteHtml = Q.help || (''
+    +'<p>לכל משפט מסמנים עד כמה הוא נכון לגביי. אפשר גם לסמן <strong>"אחרים מעירים לי על זה"</strong> ולהוסיף הערה — רק אם רוצים.</p>'
+    +'<div class="scale-legend"><span>כן, כל הזמן</span><span>מדי פעם</span><span>כמעט ולא</span><span>אף פעם לא</span></div>'
+    +'<p style="margin-top:.9rem;font-size:.92rem;color:var(--muted)">הערה שמישהו העיר לי היא <strong>מידע</strong> על איך ההתנהגות נקראה אצלו — לא הוכחה שצריך לשנות. אם זה חוזר עם אנשים שונים <em>וגם</em> מפריע לי — אולי שווה לדבר על זה. אם זה חוזר אבל לא מפריע לי — אפשר פשוט להסביר לסביבה. זו בחירה שלי.</p>');
   var intro=document.createElement("section");intro.className="intro";
   intro.innerHTML=''
     +'<a class="back-link" href="index.html">→ כל השאלונים</a>'
@@ -44,11 +46,7 @@
     +'  <div class="fld"><label for="respName">השם שלי</label><input id="respName" type="text" autocomplete="name" placeholder="שם מלא"></div>'
     +'  <div class="fld"><label for="respDate">תאריך</label><input id="respDate" type="date"></div>'
     +'</div>'
-    +'<div class="note-box">'
-    +'  <p>לכל משפט מסמנים עד כמה הוא נכון לגביי. אפשר גם לסמן <strong>"אחרים מעירים לי על זה"</strong> ולהוסיף הערה — רק אם רוצים.</p>'
-    +'  <div class="scale-legend"><span>כן, כל הזמן</span><span>מדי פעם</span><span>כמעט ולא</span><span>אף פעם לא</span></div>'
-    +'  <p style="margin-top:.9rem;font-size:.92rem;color:var(--muted)">הערה שמישהו העיר לי היא <strong>מידע</strong> על איך ההתנהגות נקראה אצלו — לא הוכחה שצריך לשנות. אם זה חוזר עם אנשים שונים <em>וגם</em> מפריע לי — אולי שווה לדבר על זה. אם זה חוזר אבל לא מפריע לי — אפשר פשוט להסביר לסביבה. זו בחירה שלי.</p>'
-    +'</div>';
+    +'<div class="note-box">'+noteHtml+'</div>';
   main.appendChild(intro);
 
   var appWrap=document.createElement("div");appWrap.id="app";main.appendChild(appWrap);
@@ -109,15 +107,33 @@
       var box=document.createElement("div");box.className="item";
       var fs=document.createElement("fieldset");
       var lg=document.createElement("legend");lg.textContent=it.t;fs.appendChild(lg);
-      var scale=document.createElement("div");scale.className="scale";
-      SCALE.forEach(function(s){
-        var inid=it.id+"_"+s.v;
-        var inp=document.createElement("input");inp.type="radio";inp.name=it.id;inp.id=inid;inp.value=s.v;
-        if(cur.scale===s.v)inp.checked=true;
-        inp.addEventListener("change",function(){setField(it.id,"scale",s.v);});
-        var lab=document.createElement("label");lab.setAttribute("for",inid);lab.textContent=s.t;
-        scale.appendChild(inp);scale.appendChild(lab);
-      });
+      var scale=document.createElement("div");
+      if(ACCESSIBLE){
+        scale.className="scale-track";
+        var line=document.createElement("div");line.className="track-line";scale.appendChild(line);
+        SCALE.forEach(function(s){
+          var inid=it.id+"_"+s.v;
+          var pt=document.createElement("div");pt.className="track-pt";
+          var inp=document.createElement("input");inp.type="radio";inp.name=it.id;inp.id=inid;inp.value=s.v;
+          if(cur.scale===s.v)inp.checked=true;
+          inp.addEventListener("change",function(){setField(it.id,"scale",s.v);});
+          var lab=document.createElement("label");lab.setAttribute("for",inid);
+          var dot=document.createElement("span");dot.className="dot";
+          var tx=document.createElement("span");tx.className="lbl";tx.textContent=s.t;
+          lab.appendChild(dot);lab.appendChild(tx);
+          pt.appendChild(inp);pt.appendChild(lab);scale.appendChild(pt);
+        });
+      } else {
+        scale.className="scale";
+        SCALE.forEach(function(s){
+          var inid=it.id+"_"+s.v;
+          var inp=document.createElement("input");inp.type="radio";inp.name=it.id;inp.id=inid;inp.value=s.v;
+          if(cur.scale===s.v)inp.checked=true;
+          inp.addEventListener("change",function(){setField(it.id,"scale",s.v);});
+          var lab=document.createElement("label");lab.setAttribute("for",inid);lab.textContent=s.t;
+          scale.appendChild(inp);scale.appendChild(lab);
+        });
+      }
       fs.appendChild(scale);
       var extra=document.createElement("div");extra.className="item-extra";
       var chkL=document.createElement("label");chkL.className="chk";

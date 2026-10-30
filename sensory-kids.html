@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>איך אני מרגיש את העולם — שאלון סהר</title>
+<link rel="icon" href="logo.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&family=Assistant:wght@400;500;600;700&family=David+Libre:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="root"></div>
+<script>
+window.QUESTIONNAIRE = {
+  storeKey: "sahar_k1_sensory_v1",
+  variant: "accessible",
+  scaleLabels: ["תמיד","הרבה פעמים","לפעמים","אף פעם"],
+  title: "איך אני מרגיש את העולם",
+  lead: "שאלון שעוזר לי להכיר את עצמי. אני מסמן/ת כמה כל משפט נכון בשבילי. אין תשובות נכונות או לא נכונות.",
+  help: "<p>בכל משפט מסמנים נקודה על הסקאלה — כמה זה נכון בשבילי: מ\"תמיד\" ועד \"אף פעם\".</p><p style='margin-top:.6rem;font-size:.95rem;color:var(--muted)'>אפשר גם לסמן \"אחרים אומרים לי על זה\". אפשר לעשות לאט, ואם משהו קשה — אפשר לבקש עזרה ממבוגר/ת.</p>",
+  reflect: [
+    {id:"r1",q:"מה כאן זה פשוט אני, ואני לא רוצה לשנות?"},
+    {id:"r2",q:"יש כאן משהו שמפריע לי או קשה לי?"},
+    {id:"r3",q:"על מה הייתי רוצה לדבר עם המטפל/ת שלי?"}
+  ],
+  domains: [
+    {id:"d1",title:"החושים שלי",sub:"איך אני מרגיש/ה רעש, אור, ריח ומגע.",items:[
+      {id:"d1q1",pole:"high",t:"יש רעשים (רעש חזק, הרבה אנשים מדברים ביחד) שמפריעים לי יותר מאשר לילדים אחרים."},
+      {id:"d1q2",pole:"high",t:"אור חזק, ריחות חזקים או בגד שמגרד מפריעים לי."},
+      {id:"d1q3",pole:"low",t:"יש דברים שכיף לי מאוד להרגיש — ללחוץ, להתנדנד, חפץ רך או מוזיקה."},
+      {id:"d1q4",pole:"high",t:"כשמישהו נוגע בי פתאום, בלי שידעתי, זה לא נעים לי."}
+    ]},
+    {id:"d2",title:"כשנהיה לי יותר מדי",sub:"מה קורה כשהכול מצטבר, ומה עוזר לי.",items:[
+      {id:"d2q1",pole:"high",t:"לפעמים נהיה לי יותר מדי (רעש, אנשים, הרבה דברים) ואני מרגיש/ה שאני רוצה לברוח או להתפוצץ."},
+      {id:"d2q2",pole:"low",t:"יש דברים שעוזרים לי להירגע (זמן לבד, תנועה, חפץ, מוזיקה)."},
+      {id:"d2q3",pole:"high",t:"אחרי יום עמוס בבית הספר אני עייף/ה מאוד וצריך/ה מנוחה."},
+      {id:"d2q4",pole:"high",t:"קשה לי לשים לב מראש שאני מתחיל/ה להתעצבן או להתעייף."}
+    ]},
+    {id:"d3",title:"הקשב שלי",sub:"לאן הקשב שלי הולך.",items:[
+      {id:"d3q1",pole:"low",t:"אני שם/ה לב לדברים קטנים שאחרים לא רואים."},
+      {id:"d3q2",pole:"low",t:"כשמשהו מעניין אותי, אני יכול/ה להתעסק בו הרבה זמן."},
+      {id:"d3q3",pole:"high",t:"קשה לי להפסיק משהו שאני באמצע, כשאומרים לי לעבור לדבר אחר."},
+      {id:"d3q4",pole:"high",t:"בכיתה קשה לי לדעת למה הכי חשוב לשים לב."}
+    ]}
+  ]
+};
+</script>
+<script src="questionnaire.js"></script>
+</body>
+</html>

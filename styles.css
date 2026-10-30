@@ -133,7 +133,8 @@ header.bar{position:sticky;top:0;z-index:11;background:var(--surface-2);border-b
 /* landing page */
 .landing-hero{margin-top:2.2rem}
 .landing-hero h2{font-size:2rem;margin-bottom:.5rem}
-.cards{display:grid;gap:1rem;margin-top:1.8rem}
+.group-title{font-family:var(--head);font-size:1.15rem;color:var(--accent-strong);margin:2.2rem 0 0}
+.cards{display:grid;gap:1rem;margin-top:1rem}
 .qcard{display:block;text-decoration:none;color:inherit;background:var(--surface);
   border:1px solid var(--line);border-radius:var(--radius);border-top-right-radius:2.2rem;
   padding:1.2rem 1.25rem;transition:border-color .12s,transform .12s}
@@ -144,6 +145,26 @@ header.bar{position:sticky;top:0;z-index:11;background:var(--surface-2);border-b
 .soon{opacity:.6;cursor:default}
 .soon:hover{transform:none;border-color:var(--line)}
 .soon .go{color:var(--muted)}
+
+/* accessible variant — visual scale track + larger, calmer type */
+.scale-track{position:relative;display:flex;justify-content:space-between;gap:.3rem;padding:.4rem .4rem 0}
+.track-line{position:absolute;top:1.3rem;right:13%;left:13%;height:3px;background:var(--line);z-index:0;border-radius:2px}
+.track-pt{position:relative;z-index:1;flex:1;display:flex;justify-content:center;min-width:0}
+.track-pt input{position:absolute;opacity:0;width:1px;height:1px}
+.track-pt label{display:flex;flex-direction:column;align-items:center;gap:.5rem;cursor:pointer;
+  font-size:.82rem;color:var(--muted);text-align:center;line-height:1.25}
+.track-pt .dot{width:1.7rem;height:1.7rem;border-radius:50%;border:3px solid var(--line);
+  background:var(--surface);box-sizing:border-box;transition:background .12s,border-color .12s}
+.track-pt input:checked+label .dot{background:var(--accent);border-color:var(--accent-strong)}
+.track-pt input:checked+label{color:var(--fg);font-weight:700}
+.track-pt input:focus-visible+label .dot{outline:2px solid var(--accent-strong);outline-offset:2px}
+
+:root.accessible body{font-size:17px}
+:root.accessible .item{padding:1.25rem 1.2rem}
+:root.accessible .item legend{font-size:1.18rem;line-height:1.5;margin-bottom:1rem}
+:root.accessible .domain{margin-top:2.8rem}
+:root.accessible .domain h3{font-size:1.5rem}
+:root.accessible .reflect label.q{font-size:1.12rem}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 @media print{
